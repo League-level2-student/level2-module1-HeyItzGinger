@@ -13,6 +13,7 @@ public class GuestBook implements ActionListener {
 
 	// Create a GUI with two buttons. One button reads "Add Name" and the other
 	// button reads "View Names".
+	JFrame frame = new JFrame();
 	public static void main(String[] args) {
 		GuestBook gb = new GuestBook();
 	}
@@ -24,13 +25,15 @@ public class GuestBook implements ActionListener {
 	// When the add name button is clicked, display an input dialog that asks the
 	// user to enter a name. Add
 	public GuestBook() {
-		JFrame frame = new JFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JPanel panel = new JPanel();
 		frame.setVisible(true);
 		frame.add(panel);
 		panel.add(button1);
 		panel.add(button2);
 		button1.addActionListener(this);
+		button2.addActionListener(this);
+		frame.pack();
 	}
 
 	// that name to an ArrayList. When the "View Names" button is clicked, display a
@@ -46,11 +49,12 @@ public class GuestBook implements ActionListener {
 		if (button1 == e.getSource()) {
 			list.add(JOptionPane.showInputDialog("Please enter a name."));
 		}
+		String res = "";
 		if (button2 == e.getSource()) {
 			for (int i = 0; i < list.size(); i++) {
-
-				JOptionPane.showMessageDialog(null, "");
+				res += "Guest #" + (i+1) + " "+ list.get(i) + "\n";
 			}
+			JOptionPane.showMessageDialog(null, res);
 		}
 	}
 
